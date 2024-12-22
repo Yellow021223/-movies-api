@@ -5,6 +5,7 @@ import usersRouter from './api/users/index.js';
 import './db/index.js';
 import defaultErrHandler from './caller/errHandler';
 import moviesRouter from './api/movies/index.js';   //import movies router
+import authenticate from './authenticate/index.js';
 
 
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use('/api/users', usersRouter);
 app.use(defaultErrHandler);
 app.use('/api/movies', moviesRouter); 
+app.use('/api/movies', authenticate, moviesRouter);
 
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
